@@ -1,0 +1,29 @@
+{
+  "name": "food-app",
+  "version": "1.0.0",
+  "description": "This is Food App by Rohit",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohitr1427/Food-App.git"
+  },
+  "keywords": [],
+  "author": "Rohit R",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rohitr1427/Food-App/issues"
+  },
+  "homepage": "https://github.com/rohitr1427/Food-App#readme",
+  "devDependencies": {
+    "parcel": "^2.16.0"
+  },
+  "dependencies": {
+    "dom": "^0.0.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}
