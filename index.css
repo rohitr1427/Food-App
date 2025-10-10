@@ -6,12 +6,31 @@ border: 1px solid black;
 
 }
 
+.res-card{
+
+    width:200px;
+    height:370px;
+    border: 1px solid black;
+}
+
+.res-container{
+
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .logo {
 
     width: 150px;
 }
+.search {
 
+   
+display: flex;
+gap: 10px;
+
+
+}
 
 .nav-items > ul{
     font-size: 24px;
@@ -25,4 +44,13 @@ border: 1px solid black;
     padding: 10px;
     margin: 10px;
 
+}
+
+
+
+
+.res-logo {
+
+    padding:5px;
+    width:95%;
 }
