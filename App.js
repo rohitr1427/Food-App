@@ -46,18 +46,24 @@ return (
 }
 
 
-const RestauranCard = ()=>{
+const RestauranCard = (props)=>{
 
 return (
 
-  <div className='res-card' style={{backgroundColor: 'grey'}}>
+  <div className='res-card' style={{backgroundColor: '#FFFEEA'}}>
 
-<img className='res-logo' alt= "res-logo" src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnxjEfPGmdR-isxXsvYzKvwTfm8HvfNHWRdQ&s"/>
+<img className='res-logo' alt= "res-logo" src ={props.image}/>
 
-<h3>Brindavan</h3>
-<h4>Dosa, South-Indian, Asian</h4>
-<h4>4.6 stars</h4>
+
+
+
+<div className='res-txt'>
+<h3>{props.resName}</h3>
+<h4>{props.cuisine}</h4>
+<h4>{props.rating}</h4>
 <h4>25 min</h4>
+</div>
+
   </div>
 
 )
@@ -77,9 +83,20 @@ return (
 <button>Search</button>
 
 </div>
-<div className="res-conatiner">
+<div className="res-container">
 
-  < RestauranCard />
+  < RestauranCard 
+  image="https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/fogfnatzbqcn5nytgb7e"
+  resName="Brindavan" 
+  cuisine="Dosa, South-Indian, Asian" 
+  rating="4.6"/>
+  < RestauranCard 
+  image="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npK3tODKGb-e6XOwIcHTZLIi4nVlTY0YUp5_miMKdSzyeuu4xbN5xEqBFeq8u-L-w8_d8DhAWCOsiMjft1CEARwqdP1TQuc5BGQOw9KfeMSsB3Oe3l5GnhJxw118hO-dhgk1aRXL-IRO1Q=s1360-w1360-h1020-rw"
+  resName="Shreemaya" 
+  cuisine="North-Indian, Asian" 
+  rating="4.0"
+  />
+
 </div>
 </div>
 
