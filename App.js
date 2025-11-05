@@ -48,20 +48,25 @@ return (
 
 const RestauranCard = (props)=>{
 
+
+const {resData} =props;
+
 return (
 
   <div className='res-card' style={{backgroundColor: '#FFFEEA'}}>
 
-<img className='res-logo' alt= "res-logo" src ={props.image}/>
+
 
 
 
 
 <div className='res-txt'>
-<h3>{props.resName}</h3>
-<h4>{props.cuisine}</h4>
-<h4>{props.rating}</h4>
-<h4>25 min</h4>
+<h3>{resData.data.name}</h3>
+<img className='res-logo' alt= "res-logo" src ={resData.data.image}/>
+<h4>{resData.data.cuisines}</h4>
+<h4>{resData.data.costForTwo}</h4>
+<h4>{resData.data.deliveryTime}</h4>
+<h4>{resData.data.area}</h4>
 </div>
 
   </div>
@@ -72,7 +77,34 @@ return (
 }
 
 
+const resObj= {
 
+type: "restaurant",
+data: {
+  type: "F",
+  id: "334475",
+  name: "KFC",
+  uuid: "",
+  city:"1",
+  area:"Vijay Nagar",
+  totalRaingsString:"500 + ratings",
+  image:"/Images/kfc.jpg",
+  cuisines:["Burgers", "Biriyani", "American", "Snacks", "Fast Fodd"],
+  tags:[],
+  costForTwo:"400 FOR TWO",
+  deliveryTime:36,
+  minDeliveryTime:36,
+  maxDeliveryTime:36,
+  slaString:"36 MINS",
+  lastMileTravel:3.5,
+
+
+
+
+}
+
+  
+}
 
 
 const Body = () =>{
@@ -85,17 +117,8 @@ return (
 </div>
 <div className="res-container">
 
-  < RestauranCard 
-  image="https://media-assets.swiggy.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/fogfnatzbqcn5nytgb7e"
-  resName="Brindavan" 
-  cuisine="Dosa, South-Indian, Asian" 
-  rating="4.6"/>
-  < RestauranCard 
-  image="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npK3tODKGb-e6XOwIcHTZLIi4nVlTY0YUp5_miMKdSzyeuu4xbN5xEqBFeq8u-L-w8_d8DhAWCOsiMjft1CEARwqdP1TQuc5BGQOw9KfeMSsB3Oe3l5GnhJxw118hO-dhgk1aRXL-IRO1Q=s1360-w1360-h1020-rw"
-  resName="Shreemaya" 
-  cuisine="North-Indian, Asian" 
-  rating="4.0"
-  />
+  < RestauranCard resData={resObj}/>
+
 
 </div>
 </div>
