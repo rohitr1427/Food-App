@@ -7,7 +7,7 @@ import Shimmer from "./Shimmer.js";
 const Body = () =>{
 
 const [listOfRestaurants, setListOfRestaurants] = useState([])
-
+const [filteredRestaurant, setFilteredRestaurant] = useState([])
 const[searchText, setSearchText] = useState("");
 
 
@@ -18,17 +18,17 @@ useEffect(()=>{
 const fetchData = async () => {
 
     const data = await fetch(
-      "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=12.9352403&lng=77.624532&carousel=true&third_party_vendor=1"      );
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.0013655&lng=76.310081&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"      );
 
 const json = await data.json();
 
+console.log(json)
 
-console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
 
 
 
 setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-
+setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
 }
 
 
@@ -39,12 +39,9 @@ setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithSty
 
 
 
-if(listOfRestaurants.length === 0){
 
-    return <h1><Shimmer /></h1>
-}
 
-return (
+return listOfRestaurants.length === 0 ? (<Shimmer />) : (
 <div className='body'>
 <div className='search'>
 <input type="text" className="search-box" value={searchText} onChange={(e)=>{
@@ -54,10 +51,10 @@ setSearchText(e.target.value)
 }}></input>
 <button onClick={()=>{
 
-const filteredRestaurant = listOfRestaurants.filter((res)=> res.data.name.toLowerCase().includes(searchText.toLowerCase()))
+const filteredRestaurant = listOfRestaurants.filter((res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase()))
 
 
-setListOfRestaurants(filteredRestaurant)
+setFilteredRestaurant(filteredRestaurant)
 
 }}>Search</button>
 
@@ -65,7 +62,7 @@ setListOfRestaurants(filteredRestaurant)
 
 <button className="filter-btn" onClick={()=>{
 
-const filterList = listOfRestaurants.filter((res) => res.data.avgRating > 4);
+const filterList = listOfRestaurants.filter((res) => res.info.avgRating > 4);
 
 setListOfRestaurants(filterList)
 
@@ -83,7 +80,7 @@ setListOfRestaurants(filterList)
 {
 
 
-listOfRestaurants.map((restaurant) => (< RestaurantCard key ={restaurant.data.id} resData = {restaurant}/>))
+filteredRestaurant.map((restaurant) => (< RestaurantCard key ={restaurant.info.id} resData = {restaurant}/>))
 
 
 
