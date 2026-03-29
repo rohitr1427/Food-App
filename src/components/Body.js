@@ -80,7 +80,7 @@ setListOfRestaurants(filterList)
 {
 
 
-filteredRestaurant.map((restaurant) => (< RestaurantCard key ={restaurant.info.id} resData = {restaurant}/>))
+filteredRestaurant.map((restaurant) => (< RestaurantCard key={restaurant.info?.id} resData={restaurant.info}/>))
 
 
 
