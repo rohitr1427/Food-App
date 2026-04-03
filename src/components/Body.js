@@ -6,30 +6,10 @@ import Shimmer from "./Shimmer.js";
 
 const Body = () =>{
 
-const [listOfRestaurants, setListOfRestaurants] = useState([])
-const [filteredRestaurant, setFilteredRestaurant] = useState([])
+const [listOfRestaurants, setListOfRestaurants] = useState(resList)
+const [filteredRestaurant, setFilteredRestaurant] = useState(resList)
 const[searchText, setSearchText] = useState("");
 
-
-useEffect(()=>{
-    fetchData();
-},[]);
-
-const fetchData = async () => {
-
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.0013655&lng=76.310081&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"      );
-
-const json = await data.json();
-
-console.log(json)
-
-
-
-
-setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-}
 
 
 
@@ -51,7 +31,7 @@ setSearchText(e.target.value)
 }}></input>
 <button onClick={()=>{
 
-const filteredRestaurant = listOfRestaurants.filter((res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase()))
+const filteredRestaurant = listOfRestaurants.filter((res)=> res.data.name.toLowerCase().includes(searchText.toLowerCase()))
 
 
 setFilteredRestaurant(filteredRestaurant)
@@ -62,7 +42,7 @@ setFilteredRestaurant(filteredRestaurant)
 
 <button className="filter-btn" onClick={()=>{
 
-const filterList = listOfRestaurants.filter((res) => res.info.avgRating > 4);
+const filterList = listOfRestaurants.filter((res) => res.data.avgRating > 4);
 
 setListOfRestaurants(filterList)
 
@@ -80,7 +60,7 @@ setListOfRestaurants(filterList)
 {
 
 
-filteredRestaurant.map((restaurant) => (< RestaurantCard key={restaurant.info?.id} resData={restaurant.info}/>))
+filteredRestaurant.map((restaurant) => (< RestaurantCard key={restaurant.data?.id} resData={restaurant.data}/>))
 
 
 
