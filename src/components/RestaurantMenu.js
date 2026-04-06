@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import resMenu from "../utils/mockMenu.js";
-
+import { useParams } from "react-router-dom";
 
 
 
 const RestaurantMenu = () => {
 
     const [resInfo, setResInfo] = useState(null);
-
-
+    
+    const {resId} = useParams();
+    
 
     useEffect(() => {
     // simulate API call
-    setTimeout(() => {
-      setResInfo(resMenu[0].data);
-    }, 1000);
-      }, []);
+    const restaurant = resMenu.find((res) => res.id === resId);
+    setResInfo(restaurant);
+
+      }, [resId]);
 
     
 
@@ -25,21 +26,21 @@ const RestaurantMenu = () => {
          
 
 
-      const { name, cuisines, costForTwoMessage } = resInfo;
+      const {name, cuisines, costForTwoMessage, itemCards } = resInfo;
 
-
+      
 
 
      return (
         <div className="menu">
             <h1>{name}</h1>
             <p>{cuisines.join(", ")}</p>
-            <h2>Menu</h2>
+            <p>{costForTwoMessage}</p>
+            <h2>Recommended</h2>
             <ul>
-                <li>Pizza</li>
-                <li>Burger</li>
-                <li>Pasta</li>
-                <li>Salad</li>
+                {itemCards.map((item)=>(
+                    <li key={item.id}>{item.name} - ₹{item.price/100}</li>
+                ))}
             </ul>
             {/* Menu items will be displayed here */}
         </div>
