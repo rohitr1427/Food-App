@@ -2,22 +2,17 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import resMenu from "../utils/mockMenu.js";
 import { useParams } from "react-router-dom";
-
+import useRestaurantMenu from "../utils/useRestaurantMenu.js";
 
 
 const RestaurantMenu = () => {
 
-    const [resInfo, setResInfo] = useState(null);
+    
     
     const {resId} = useParams();
     
-
-    useEffect(() => {
-    // simulate API call
-    const restaurant = resMenu.find((res) => res.id === resId);
-    setResInfo(restaurant);
-
-      }, [resId]);
+    const resInfo = useRestaurantMenu(resId);
+      
 
     
 
